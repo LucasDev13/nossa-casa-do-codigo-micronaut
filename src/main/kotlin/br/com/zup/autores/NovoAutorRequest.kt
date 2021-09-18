@@ -1,11 +1,17 @@
 package br.com.zup.autores
 
 import br.com.zup.livros.Livro
+import io.micronaut.core.annotation.Introspected
+import javax.validation.constraints.Email
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
+@Introspected
 data class NovoAutorRequest(
-    val nome: String,
-    val email: String,
-    val descricao: String,
-    val livros: List<Livro>
+    @field:NotBlank val nome: String,
+    @field:NotBlank @field:Email val email: String,
+    @field:NotBlank @field:Size(max = 400) val descricao: String,
+    @field:NotNull val livros: List<Livro>
 ) {
 }

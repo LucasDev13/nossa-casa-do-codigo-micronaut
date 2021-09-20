@@ -14,10 +14,10 @@ import javax.validation.Valid
 class CadastraAutorController {
 
     val logger: Logger = LoggerFactory.getLogger("CadastraAutorController.class")
-
     @Post
     fun cadastra(@Body @Valid request: NovoAutorRequest): HttpResponse<Any>{
+        val autor = request.toModel()
         logger.info("Autor cadastrado.")
-        return HttpResponse.created(request)
+        return HttpResponse.created(autor)
     }
 }

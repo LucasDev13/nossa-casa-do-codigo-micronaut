@@ -11,13 +11,14 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/api/autores")
-class CadastraAutorController {
+class CadastraAutorController(val autorRepository: AutorRepository) {
 
     val logger: Logger = LoggerFactory.getLogger("CadastraAutorController.class")
     @Post
     fun cadastra(@Body @Valid request: NovoAutorRequest): HttpResponse<Any>{
         val autor = request.toModel()
-        logger.info("Autor cadastrado.")
+        autorRepository.save(autor)
+        logger.info("Cadastrado realizado.")
         return HttpResponse.created(autor)
     }
 }

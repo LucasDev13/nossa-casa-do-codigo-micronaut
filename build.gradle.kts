@@ -43,9 +43,6 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("org.postgresql:postgresql:42.2.23")
-
-
-
 }
 
 

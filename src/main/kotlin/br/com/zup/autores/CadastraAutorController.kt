@@ -18,7 +18,9 @@ class CadastraAutorController(val autorRepository: AutorRepository) {
     fun cadastra(@Body @Valid request: NovoAutorRequest): HttpResponse<Any>{
         val autor = request.toModel()
         autorRepository.save(autor)
+
         logger.info("Cadastrado realizado.")
+
         val uri = UriBuilder.of("/autores/{id}")
             .expand(mutableMapOf(Pair("id", autor.id)))
         return HttpResponse.created(uri)

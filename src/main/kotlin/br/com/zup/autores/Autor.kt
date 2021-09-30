@@ -15,7 +15,7 @@ class Autor(
     @field:NotBlank @field:Email
     val email: String,
     @field:NotBlank
-    val descricao: String,
+    var descricao: String,
     @OneToMany(cascade = [CascadeType.ALL])
     val livros: List<Livro>
 ) {

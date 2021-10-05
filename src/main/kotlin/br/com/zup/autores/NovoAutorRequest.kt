@@ -15,6 +15,6 @@ data class NovoAutorRequest(
     @field:NotNull val livros: List<Livro>
 ) {
     fun toModel(): Autor{
-        return Autor(nome, email, descricao, livros)
+        return Autor(nome, email, descricao)
     }
 }

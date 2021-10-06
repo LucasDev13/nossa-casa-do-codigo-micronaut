@@ -20,7 +20,8 @@ class BuscaAutoresController(val autorRepository: AutorRepository) {
             //retornar essa lista.
             return HttpResponse.ok(response)
         }
-        val possivelAutor = autorRepository.findByEmail(email)
+//        val possivelAutor = autorRepository.findByEmail(email) //usando query method
+        val possivelAutor = autorRepository.buscaEmail(email)// -> usando @Query
 
         if (possivelAutor.isEmpty) {
             return HttpResponse.notFound()
@@ -31,16 +32,6 @@ class BuscaAutoresController(val autorRepository: AutorRepository) {
 
     @Get("/paginacao")
     fun listaNomesPaginados(@QueryValue(defaultValue = "") nome: String): HttpResponse<Any> {
-//        if(nome.isBlank()){
-//            //pegar do banco de dados
-//            val autores = autorRepository.findAll()
-//
-//            //conversão para um dto
-//            val response = autores.map { autor -> DetalhesAutorResponse(autor) }
-//            //retornar essa lista.
-//            return HttpResponse.ok(response)
-//        }
-
         val paginacaoNome = autorRepository.findByNome(nome, Pageable.from(0,5))
         return HttpResponse.ok(paginacaoNome)
     }
